@@ -1,0 +1,46 @@
+
+html, body, .container-fluid, .navbar {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+
+h1, h2, h3, .navbar-brand {
+  color: #39FF14 !important;
+  text-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14 !important;
+}
+
+
+.btn-primary {
+  background-color: transparent !important;
+  border: 2px solid #39FF14 !important;
+  color: #39FF14 !important;
+}
+
+.btn-primary:hover {
+  background-color: #39FF14 !important;
+  color: #000000 !important;
+  box-shadow: 0 0 20px #39FF14 !important;
+}
+
+
+p, .nav-link, .lead {
+  color: #cccccc !important;
+}
+
+
+.form-control {
+  background-color: #111111 !important;
+  border: 1px solid #39FF14 !important;
+  color: #ffffff !important;
+}
+
+::placeholder {
+  color: #aaaaaa !important;
+  opacity: 1; 
+}
+
+
+footer p, footer .text-body-secondary {
+  color: #cccccc !important;
+}
