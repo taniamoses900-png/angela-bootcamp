@@ -1,0 +1,28 @@
+<%- include("partials/header.ejs") %>
+
+<div class="dashboard-header">
+  <h2>Recent Engineering Entries</h2>
+</div>
+
+<% if (posts.length === 0) { %>
+  <div class="empty-state">
+    <p>No blog entries have been written yet. Click the button above to publish your first post!</p>
+  </div>
+<% } else { %>
+  <div class="blog-grid">
+    <% posts.forEach(post => { %>
+      <article class="blog-card">
+        <h3><%= post.title %></h3>
+        <p class="post-preview"><%= post.content %></p>
+        <div class="card-actions">
+          <a href="/edit/<%= post.id %>" class="btn-edit">Edit Post</a>
+          <form action="/delete/<%= post.id %>" method="POST" style="display: inline;">
+            <button type="submit" class="btn-delete" onclick="return confirm('Delete this post permanently?')">Delete</button>
+          </form>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include("partials/footer.ejs") %>
