@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard Capstone</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>🌤️ Live Weather Dashboard 🌧️</h1>
+        <p class="subtitle">Capstone API Integration Project</p>
+
+        <% if (error) { %>
+            <div class="error-box">
+                <p>⚠️ <%= error %></p>
+            </div>
+        <% } else if (locals.forecast) { %>
+            
+            <div class="current-card">
+                <h2>Location: <%= forecast.name %></h2>
+                <div class="temp-badge"><%= forecast.temperature %><%= forecast.temperatureUnit %></div>
+                <p class="wind">💨 Wind Speed: <%= forecast.windSpeed %> <%= forecast.windDirection %></p>
+                <p class="details">Successfully loaded live telemetry from an open REST data node via Axios stream handlers.</p>
+            </div>
+
+        <% } %>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    color: #1e293b;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 5px;
+    font-size: 2.5rem;
+    color: #0369a1;
+}
+
+.subtitle {
+    margin-top: 0;
+    color: #0284c7;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.current-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    border: 1px solid #e2e8f0;
+}
+
+.temp-badge {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #f97316;
+    margin: 15px 0;
+}
+
+.wind {
+    font-weight: 600;
+    color: #64748b;
+}
+
+.details {
+    max-width: 600px;
+    margin: 15px auto 0 auto;
+    line-height: 1.6;
+    color: #334155;
+}
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.grid-card {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.grid-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 0.95rem;
+    color: #0369a1;
+}
+
+.grid-temp {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #f97316;
+    margin: 5px 0;
+}
+
+.grid-short {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.error-box {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #fca5a5;
+}
