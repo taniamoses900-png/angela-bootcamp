@@ -17,8 +17,9 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-async function checkVisited() {
+async function checkVisisted() {
   const result = await db.query("SELECT country_code FROM visited_countries");
+
   let countries = [];
   result.rows.forEach((country) => {
     countries.push(country.country_code);
@@ -27,7 +28,7 @@ async function checkVisited() {
 }
 
 app.get("/", async (req, res) => {
-  const countries = await checkVisited();
+  const countries = await checkVisisted();
   res.render("index.ejs", { countries: countries, total: countries.length });
 });
 
@@ -37,29 +38,38 @@ app.post("/add", async (req, res) => {
   try {
     const result = await db.query(
       "SELECT country_code FROM countries WHERE country_name ILIKE $1",
-      [input]
+      [input.trim()]
     );
 
-    if (result.rows.length !== 0) {
-      const data = result.rows[0];
-      const countryCode = data.country_code;
+    if (result.rows.length === 0) {
+      const countries = await checkVisisted();
+      return res.render("index.ejs", {
+        countries: countries,
+        total: countries.length,
+        error: "Country name does not exist, try again.",
+      });
+    }
 
-      try {
-        await db.query("INSERT INTO visited_countries (country_code) VALUES ($1)", [
-          countryCode,
-        ]);
-        res.redirect("/");
-      } catch (err) {
-        console.log("Error inserting into database:", err);
-        res.redirect("/");
-      }
-    } else {
-      console.log("Country not found.");
+    const countryCode = result.rows[0].country_code;
+
+    try {
+      await db.query(
+        "INSERT INTO visited_countries (country_code) VALUES ($1)",
+        [countryCode]
+      );
       res.redirect("/");
+    } catch (err) {
+      console.log(err);
+      const countries = await checkVisisted();
+      res.render("index.ejs", {
+        countries: countries,
+        total: countries.length,
+        error: "Country has already been added, try again.",
+      });
     }
   } catch (err) {
-    console.log("Error querying database:", err);
-    res.redirect("/");
+    console.log(err);
+    res.status(500).send("Internal Server Error");
   }
 });
 
