@@ -1,0 +1,98 @@
+html {
+  background-color: #050505;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 25, 10, 0.9) 100%);
+  min-height: 100vh;
+  font-family: 'Courier New', Courier, monospace;
+  color: #33ff33;
+  margin: 0;
+  padding: 0;
+}
+
+.jumbotron {
+  background: rgba(0, 20, 0, 0.6);
+  border: 1px solid #33ff33;
+  box-shadow: 0 0 20px rgba(51, 255, 51, 0.2);
+  border-radius: 4px;
+  padding: 40px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #33ff33;
+  margin-bottom: 20px;
+}
+
+.lead {
+  color: #88ff88;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.btn-dark {
+  background-color: #000;
+  color: #33ff33;
+  border: 1px solid #33ff33;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 10px 24px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
+  background-color: #33ff33;
+  color: #000;
+  box-shadow: 0 0 15px #33ff33;
+}
+
+.btn-light {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 10px 24px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+  background-color: #ffffff;
+  color: #000;
+  box-shadow: 0 0 15px #ffffff;
+}
+
+.form-group label {
+  color: #33ff33;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.form-control {
+  background-color: #000000;
+  border: 1px solid #33ff33;
+  color: #33ff33;
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 0;
+  padding: 12px;
+}
+
+.form-control:focus {
+  background-color: #051005;
+  border-color: #33ff33;
+  color: #33ff33;
+  box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+  outline: none;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
