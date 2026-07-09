@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Book Notes Tracker</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+  <header>
+    <h1>📚 My Personal Book Notes</h1>
+    <form action="/" method="GET" class="sort-form">
+      <label for="sort">Sort books by:</label>
+      <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="date_read" <%= currentSort === 'date_read' ? 'selected' : '' %>>Recent</option>
+        <option value="rating" <%= currentSort === 'rating' ? 'selected' : '' %>>Highest Rating</option>
+        <option value="title" <%= currentSort === 'title' ? 'selected' : '' %>>Book Title</option>
+      </select>
+    </form>
+  </header>
+
+  <main class="container">
+    <% if (books.length === 0) { %>
+      <p>No books logged yet!</p>
+    <% } else { %>
+      <% books.forEach(book => { %>
+        <div class="book-card">
+          <div class="cover-column">
+            <% if (book.title.toLowerCase().includes('vampire')) { %>
+              <img src="/vampire.jpg" alt="Book Cover" class="book-cover">
+            <% } else if (book.title.toLowerCase().includes('chocolate')) { %>
+              <img src="/charlie.jpg" alt="Book Cover" class="book-cover">
+            <% } else if (book.title.toLowerCase().includes('weak')) { %>
+              <img src="/weak hero.jpg" alt="Book Cover" class="book-cover">
+            <% } else { %>
+              <div class="fallback-cover">📖<br>No Cover</div>
+            <% } %>
+          </div>
+          <div class="info-column">
+            <h2><%= book.title %></h2>
+            <h3>Written by: <%= book.author %></h3>
+            <div class="star-rating">
+              <%= "⭐".repeat(book.rating) %>
+            </div>
+            <p class="book-notes">"<%= book.notes %>"</p>
+            <div class="meta-info">
+              <small>Finished Reading: <%= new Date(book.date_read).toLocaleDateString() %></small>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+  </main>
+
+</body>
+</html>

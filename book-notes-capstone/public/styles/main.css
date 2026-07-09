@@ -1,0 +1,138 @@
+html {
+  background-color: #0d1117;
+  background-image: radial-gradient(circle at 20% 30%, #1f1a3a 0%, #0d1117 70%);
+  min-height: 100vh;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #f0f6fc;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: rgba(255, 117, 143, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 117, 143, 0.2);
+  text-align: center;
+  padding: 30px;
+  color: #fff;
+}
+
+header h1 {
+  margin: 0 0 15px 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 20px rgba(255, 117, 143, 0.6);
+}
+
+.sort-form {
+  color: #adb5bd;
+  font-size: 15px;
+}
+
+.sort-form select {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 117, 143, 0.3);
+  background-color: #161b22;
+  color: #fff;
+  font-size: 14px;
+  margin-left: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sort-form select:focus {
+  border-color: #ff758f;
+  box-shadow: 0 0 10px rgba(255, 117, 143, 0.4);
+}
+
+.container {
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.book-card {
+  background: rgba(22, 27, 34, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-bottom: 25px;
+  display: flex;
+  padding: 24px;
+  gap: 24px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 117, 143, 0.4);
+}
+
+.book-cover {
+  width: 130px;
+  height: 195px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.fallback-cover {
+  width: 130px;
+  height: 195px;
+  background: linear-gradient(135deg, #21262d 0%, #161b22 100%);
+  border: 1px dashed rgba(255, 117, 143, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ff758f;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.info-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-column h2 {
+  margin: 0 0 6px 0;
+  color: #fff;
+  font-size: 24px;
+}
+
+.info-column h3 {
+  margin: 0 0 16px 0;
+  font-weight: 400;
+  color: #ff758f;
+  font-size: 16px;
+}
+
+.star-rating {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.book-notes {
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: italic;
+  color: #c9d1d9;
+  margin: 0 0 20px 0;
+  flex-grow: 1;
+}
+
+.meta-info {
+  color: #8b949e;
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 12px;
+}
