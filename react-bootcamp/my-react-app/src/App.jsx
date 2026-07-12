@@ -1,13 +1,15 @@
-import { add, multiply, subtract, divide } from "./calculator.js";
+import "./App.css";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+import Note from "./components/Note.jsx";
 
 function App() {
   return (
-    <ul>
-      <li>{add(1, 2)}</li>
-      <li>{multiply(2, 3)}</li>
-      <li>{subtract(7, 2)}</li>
-      <li>{divide(5, 2)}</li>
-    </ul>
+    <div>
+      <Header />
+      <Note />
+      <Footer />
+    </div>
   );
 }
 
