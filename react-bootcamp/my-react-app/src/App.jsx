@@ -1,15 +1,14 @@
 import "./App.css";
-import Card from "./components/Card.jsx";
-import contacts from "./contacts.js";
+import Entry from "./components/Entry.jsx";
+import emojipedia from "./emojipedia.js";
 
-function createCard(contact) {
+function createEntry(emojiTerm) {
   return (
-    <Card
-      key={contact.id}
-      name={contact.name}
-      img={contact.imgURL}
-      tel={contact.phone}
-      email={contact.email}
+    <Entry
+      key={emojiTerm.id}
+      emoji={emojiTerm.emoji}
+      name={emojiTerm.name}
+      description={emojiTerm.meaning}
     />
   );
 }
@@ -17,10 +16,13 @@ function createCard(contact) {
 function App() {
   return (
     <div>
-      <h1 className="heading">My Contacts</h1>
-      {contacts.map(createCard)}
+      <h1>
+        <span>emojipedia</span>
+      </h1>
+      <dl className="dictionary">{emojipedia.map(createEntry)}</dl>
     </div>
   );
 }
 
 export default App;
+
