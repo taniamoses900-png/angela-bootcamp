@@ -1,10 +1,12 @@
-import Heading from "./components/Heading.jsx";
+import pi, { doublePi, triplePi } from "./math.js";
 
 function App() {
   return (
-    <div>
-      <Heading />
-    </div>
+    <ul>
+      <li>{pi}</li>
+      <li>{doublePi()}</li>
+      <li>{triplePi()}</li>
+    </ul>
   );
 }
 
