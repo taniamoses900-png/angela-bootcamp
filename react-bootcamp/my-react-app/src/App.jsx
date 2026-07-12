@@ -1,24 +1,24 @@
+import "./App.css";
 import Card from "./components/Card.jsx";
-import adamImg from "./assets/adam.jpg";
-import jimImg from "./assets/jim.jpg";
+import contacts from "./contacts.js";
 
 function App() {
   return (
     <div>
-      <h1>My Contacts</h1>
+      <h1 className="heading">My Contacts</h1>
       
       <Card 
-        name="Adam Sandler" 
-        img={adamImg} 
-        tel="+1 555 8831" 
-        email="adam@happygilmore.com" 
+        name={contacts[0].name}
+        img={contacts[0].imgURL}
+        tel={contacts[0].phone}
+        email={contacts[0].email}
       />
 
       <Card 
-        name="Jim Carrey" 
-        img={jimImg} 
-        tel="+1 555 4429" 
-        email="jim@liarliar.com" 
+        name={contacts[1].name}
+        img={contacts[1].imgURL}
+        tel={contacts[1].phone}
+        email={contacts[1].email}
       />
     </div>
   );
