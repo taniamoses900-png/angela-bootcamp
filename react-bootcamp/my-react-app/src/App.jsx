@@ -1,12 +1,11 @@
 function App() {
+  const name = "Tania";
+  const luckyNumber = 7;
+
   return (
     <div>
-      <h1>My Favourite Foods</h1>
-      <ul>
-        <li>Bacon</li>
-        <li>Pasta</li>
-        <li>Chicken</li>
-      </ul>
+      <h1>Hello, {name}!</h1>
+      <p>Your lucky number is {luckyNumber}.</p>
     </div>
   );
 }
