@@ -1,14 +1,28 @@
-const customStyle = {
-  color: "red",
-  fontSize: "20px",
-  border: "1px solid black"
+import "./App.css";
+
+const time = new Date().getHours();
+let greeting = "";
+
+const headingStyle = {
+  color: "",
 };
 
-customStyle.color = "blue";
+if (time < 12) {
+  greeting = "Good Morning";
+  headingStyle.color = "red";
+} else if (time < 18) {
+  greeting = "Good Afternoon";
+  headingStyle.color = "green";
+} else {
+  greeting = "Good Evening";
+  headingStyle.color = "blue";
+}
 
 function App() {
   return (
-    <h1 style={customStyle}>Hello World!</h1>
+    <h1 className="heading" style={headingStyle}>
+      {greeting}
+    </h1>
   );
 }
 
