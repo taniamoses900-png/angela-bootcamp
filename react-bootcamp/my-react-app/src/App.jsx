@@ -1,11 +1,11 @@
 function App() {
-  const name = "Tania";
-  const luckyNumber = 7;
+  const name = "Tania Moses";
+  const currentYear = new Date().getFullYear();
 
   return (
     <div>
-      <h1>Hello, {name}!</h1>
-      <p>Your lucky number is {luckyNumber}.</p>
+      <p>Created by {name}</p>
+      <p>Copyright {currentYear}</p>
     </div>
   );
 }
