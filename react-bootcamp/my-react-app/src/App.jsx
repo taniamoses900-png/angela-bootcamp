@@ -1,12 +1,21 @@
 import React from "react";
-import Form from "./components/Form";
 
-var userIsRegistered = false;
+var isDone = false;
+
+function strike() {
+  isDone = true;
+}
+
+function unstrike() {
+  isDone = false;
+}
 
 function App() {
   return (
     <div className="container">
-      <Form isRegistered={userIsRegistered} />
+      <p style={isDone ? { textDecoration: "line-through" } : null}>Buy milk</p>
+      <button onClick={strike}>Change to strike through</button>
+      <button onClick={unstrike}>Change back</button>
     </div>
   );
 }
