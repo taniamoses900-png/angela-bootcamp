@@ -1,53 +1,52 @@
 body {
-  background-color: #ffdae0 !important;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fbd6d6;
   margin: 0;
 }
 
 h1 {
   text-align: center;
-  margin: 50px 0;
-  color: #ff477e;
-  font-size: 3rem;
+  color: #ff4d6d;
+  font-size: 3.5rem;
+  margin: 40px 0;
 }
 
 .dictionary {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 90%;
-  margin: 0 auto 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .term {
   background-color: #ffffff;
-  padding: 35px;
   border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(255, 71, 126, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   margin: 20px;
-  width: 320px;
+  padding: 30px;
+  width: 280px;
   text-align: center;
 }
 
-.term dt {
-  margin-bottom: 15px;
-}
-
 .emoji {
+  font-size: 3rem;
   display: block;
-  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+dt span:last-child {
+  color: #ff4d6d;
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: block;
   margin-bottom: 15px;
 }
 
-.term dt span:not(.emoji) {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #ff477e;
-}
-
-.term dd {
-  font-size: 1.1rem;
+dd {
   color: #4a4a4a;
+  font-size: 1rem;
   line-height: 1.5;
   margin: 0;
 }
