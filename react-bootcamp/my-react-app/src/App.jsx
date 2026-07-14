@@ -1,189 +1,142 @@
 import React, { useState } from "react";
-import ToDoItem from "./ToDoItem.jsx";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Note from "./components/Note";
+import CreateArea from "./components/CreateArea";
 
 function App() {
-  const [inputText, setInputText] = useState("");
-  const [items, setItems] = useState([]);
+  const [notes, setNotes] = useState([]);
 
-  function handleChange(event) {
-    const newValue = event.target.value;
-    setInputText(newValue);
+  function addNote(newNote) {
+    setNotes((prevNotes) => {
+      return [...prevNotes, newNote];
+    });
   }
 
-  function addItem() {
-    if (inputText.trim() !== "") {
-      setItems((prevItems) => {
-        return [...prevItems, inputText];
-      });
-      setInputText("");
-    }
-  }
-
-  // Deletes an item by filtering it out using its array index ID
-  function deleteItem(id) {
-    setItems((prevItems) => {
-      return prevItems.filter((item, index) => {
+  function deleteNote(id) {
+    setNotes((prevNotes) => {
+      return prevNotes.filter((noteItem, index) => {
         return index !== id;
       });
     });
   }
 
   return (
-    <div className="app-layout">
+    <div>
       <style>{`
+        * {
+          box-sizing: border-box;
+        }
         body {
           margin: 0;
           padding: 0;
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Inter', sans-serif;
           background: linear-gradient(135deg, #d2ebd9 0%, #aed6b9 100%);
           min-height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
         }
-
-        .app-layout {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+        header {
+          background-color: #589669;
+          margin: 0 auto;
+          padding: 16px 32px;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
         }
-
-        .container {
-          background-color: #ffffff;
-          border-top: 10px solid #589669;
-          padding: 35px 30px;
-          border-radius: 16px;
-          box-shadow: 0 15px 35px rgba(40, 70, 50, 0.15);
+        header h1 {
+          color: #fff;
+          font-family: "McLaren", cursive;
+          font-weight: 200;
+          margin: 0;
+        }
+        footer {
+          position: absolute;
+          text-align: center;
+          bottom: 0;
           width: 100%;
-          max-width: 380px;
-          min-height: 420px;
+          height: 2.5rem;
+        }
+        footer p {
+          color: #7da887;
+        }
+        form.create-note {
+          position: relative;
+          width: 480px;
+          margin: 30px auto 20px auto;
+          background: #fff;
+          padding: 15px;
+          border-radius: 7px;
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
           display: flex;
           flex-direction: column;
         }
-
-        .heading h1 {
-          color: #2b4c34;
-          font-size: 2.2rem;
-          font-weight: 800;
-          margin: 0 0 5px 0;
-          letter-spacing: -0.5px;
-          text-align: center;
+        form.create-note input, form.create-note textarea {
+          width: 100%;
+          border: none;
+          padding: 4px;
+          outline: none;
+          font-size: 1.2rem;
+          font-family: inherit;
+          resize: none;
         }
-
-        .subtitle {
-          color: #7da887;
-          font-size: 0.95rem;
-          margin-bottom: 25px;
-          font-weight: 500;
-          text-align: center;
-        }
-
-        .form {
-          display: flex;
-          gap: 12px;
-          margin-bottom: 25px;
-        }
-
-        input {
-          flex: 1;
-          background-color: #f4f8f5;
-          border: 2px solid #e1e9e3;
-          border-radius: 8px;
-          color: #2b4c34;
-          font-size: 1.05rem;
-          padding: 12px 16px;
+        form.create-note button {
+          position: absolute;
+          right: 18px;
+          bottom: -18px;
+          background: #589669;
+          color: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+          cursor: pointer;
           outline: none;
         }
-
-        button {
-          background-color: #589669;
-          border: none;
-          border-radius: 8px;
-          color: #ffffff;
-          cursor: pointer;
-          font-size: 1rem;
-          font-weight: 600;
-          padding: 12px 24px;
+        .note {
+          background: #fff;
+          border-radius: 7px;
+          box-shadow: 0 2px 5px #ccc;
+          padding: 10px;
+          width: 240px;
+          margin: 16px;
+          float: left;
         }
-
-        ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          flex-grow: 1;
-        }
-
-        li {
-          background-color: #f4f8f5;
-          border: 1px solid #e8f0ea;
-          padding: 14px 16px;
-          border-radius: 8px;
-          margin-bottom: 10px;
+        .note h1 {
+          font-size: 1.1em;
+          margin-bottom: 6px;
           color: #2b4c34;
-          font-size: 1.05rem;
-          display: flex;
-          align-items: center;
-          gap: 12px;
+        }
+        .note p {
+          font-size: 1.1em;
+          margin-bottom: 10px;
+          white-space: pre-wrap;
+          color: #333;
+        }
+        .note button {
+          position: relative;
+          float: right;
+          background: none;
+          border: none;
+          color: #965858;
           cursor: pointer;
-          transition: transform 0.1s ease;
-        }
-
-        li:hover {
-          transform: scale(1.02);
-          border-color: #ffb3b3;
-          background-color: #fff5f5;
-        }
-
-        li::before {
-          content: "🌸";
-          font-size: 1.1rem;
-          flex-shrink: 0;
-        }
-
-        .card-bottom-flowers {
-          font-size: 12px;
-          letter-spacing: 4px;
-          opacity: 0.85;
-          text-align: center;
-          margin-top: auto;
-          padding-top: 20px;
+          outline: none;
         }
       `}</style>
 
-      <div className="container">
-        <div className="heading">
-          <h1>To-Do List</h1>
-          <div className="subtitle">Daily Tasks Overview</div>
-        </div>
-        
-        <div className="form">
-          <input 
-            onChange={handleChange} 
-            type="text" 
-            value={inputText} 
-            placeholder="What needs to be done?" 
+      <Header />
+      <CreateArea onAdd={addNote} />
+      {notes.map((noteItem, index) => {
+        return (
+          <Note
+            key={index}
+            id={index}
+            title={noteItem.title}
+            content={noteItem.content}
+            onDelete={deleteNote}
           />
-          <button onClick={addItem}>Add</button>
-        </div>
-        
-        <ul>
-          {items.map((todoItem, index) => (
-            <ToDoItem
-              key={index}
-              id={index}
-              text={todoItem}
-              onChecked={deleteItem}
-            />
-          ))}
-        </ul>
-
-        <div className="card-bottom-flowers">
-          🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸
-        </div>
-      </div>
+        );
+      })}
+      <Footer />
     </div>
   );
 }
 
 export default App;
-
