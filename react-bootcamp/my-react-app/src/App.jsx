@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function App() {
-  // 1. Expand the complex state object to track the email field
   const [contact, setContact] = useState({
     fName: "",
     lName: "",
@@ -11,8 +10,6 @@ function App() {
   function handleChange(event) {
     const { value, name } = event.target;
 
-    // 2. Use the spread operator (...) to copy the entire previous state,
-    // then use square brackets [name] to dynamically update only the field that changed.
     setContact((prevValue) => {
       return {
         ...prevValue,
@@ -23,7 +20,6 @@ function App() {
 
   return (
     <div className="container">
-      {/* Direct layout styling rules */}
       <style>{`
         body {
           margin: 0;
@@ -100,7 +96,6 @@ function App() {
           placeholder="Last Name"
           value={contact.lName}
         />
-        {/* 3. New input field added for the practice challenge */}
         <input
           name="email"
           onChange={handleChange}
