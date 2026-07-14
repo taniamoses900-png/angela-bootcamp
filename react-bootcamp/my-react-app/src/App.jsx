@@ -19,6 +19,15 @@ function App() {
     }
   }
 
+  // Deletes an item by filtering it out using its array index ID
+  function deleteItem(id) {
+    setItems((prevItems) => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <div className="app-layout">
       <style>{`
@@ -115,6 +124,14 @@ function App() {
           display: flex;
           align-items: center;
           gap: 12px;
+          cursor: pointer;
+          transition: transform 0.1s ease;
+        }
+
+        li:hover {
+          transform: scale(1.02);
+          border-color: #ffb3b3;
+          background-color: #fff5f5;
         }
 
         li::before {
@@ -151,7 +168,12 @@ function App() {
         
         <ul>
           {items.map((todoItem, index) => (
-            <ToDoItem key={index} text={todoItem} />
+            <ToDoItem
+              key={index}
+              id={index}
+              text={todoItem}
+              onChecked={deleteItem}
+            />
           ))}
         </ul>
 
@@ -164,3 +186,4 @@ function App() {
 }
 
 export default App;
+
