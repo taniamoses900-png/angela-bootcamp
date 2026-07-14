@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ToDoItem from "./ToDoItem.jsx";
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -85,14 +86,6 @@ function App() {
           outline: none;
         }
 
-        input:focus {
-          border-color: #589669;
-        }
-
-        input::placeholder {
-          color: #a3bda9;
-        }
-
         button {
           background-color: #589669;
           border: none;
@@ -102,10 +95,6 @@ function App() {
           font-size: 1rem;
           font-weight: 600;
           padding: 12px 24px;
-        }
-
-        button:hover {
-          background-color: #437350;
         }
 
         ul {
@@ -134,7 +123,6 @@ function App() {
           flex-shrink: 0;
         }
 
-        /* Places the flowers inside the white card right at the very bottom */
         .card-bottom-flowers {
           font-size: 12px;
           letter-spacing: 4px;
@@ -163,11 +151,10 @@ function App() {
         
         <ul>
           {items.map((todoItem, index) => (
-            <li key={index}>{todoItem}</li>
+            <ToDoItem key={index} text={todoItem} />
           ))}
         </ul>
 
-        {/* This div is now moved inside the white container box at the bottom */}
         <div className="card-bottom-flowers">
           🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸
         </div>
