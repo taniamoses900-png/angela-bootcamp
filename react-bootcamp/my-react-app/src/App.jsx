@@ -1,32 +1,29 @@
 import React, { useState } from "react";
 
 function App() {
-  const [fullName, setFullName] = useState({
+  // 1. Expand the complex state object to track the email field
+  const [contact, setContact] = useState({
     fName: "",
-    lName: ""
+    lName: "",
+    email: ""
   });
 
   function handleChange(event) {
     const { value, name } = event.target;
 
-    setFullName((prevValue) => {
-      if (name === "fName") {
-        return {
-          fName: value,
-          lName: prevValue.lName
-        };
-      } else if (name === "lName") {
-        return {
-          fName: prevValue.fName,
-          lName: value
-        };
-      }
+    // 2. Use the spread operator (...) to copy the entire previous state,
+    // then use square brackets [name] to dynamically update only the field that changed.
+    setContact((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value
+      };
     });
   }
 
   return (
     <div className="container">
-      {/* This forces the layout and midnight-blue gradient directly onto the page */}
+      {/* Direct layout styling rules */}
       <style>{`
         body {
           margin: 0;
@@ -43,11 +40,19 @@ function App() {
           width: 100%;
           max-width: 320px;
         }
-        h1 {
+        h1, p {
           color: #ffffff;
           font-weight: 300;
-          font-size: 3.2rem;
+          margin: 0;
+        }
+        h1 {
+          font-size: 3rem;
+        }
+        p {
+          font-size: 1.2rem;
+          margin-top: 5px;
           margin-bottom: 25px;
+          color: rgba(255, 255, 255, 0.7);
         }
         form {
           display: flex;
@@ -79,19 +84,28 @@ function App() {
         }
       `}</style>
 
-      <h1>Hello {fullName.fName} {fullName.lName}</h1>
+      <h1>Hello {contact.fName} {contact.lName}</h1>
+      <p>{contact.email}</p>
+      
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           name="fName"
           onChange={handleChange}
           placeholder="First Name"
-          value={fullName.fName}
+          value={contact.fName}
         />
         <input
           name="lName"
           onChange={handleChange}
           placeholder="Last Name"
-          value={fullName.lName}
+          value={contact.lName}
+        />
+        {/* 3. New input field added for the practice challenge */}
+        <input
+          name="email"
+          onChange={handleChange}
+          placeholder="Email"
+          value={contact.email}
         />
         <button type="submit">Submit</button>
       </form>
@@ -100,4 +114,5 @@ function App() {
 }
 
 export default App;
+
 
