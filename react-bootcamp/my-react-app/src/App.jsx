@@ -1,113 +1,179 @@
 import React, { useState } from "react";
 
 function App() {
-  const [contact, setContact] = useState({
-    fName: "",
-    lName: "",
-    email: ""
-  });
+  const [inputText, setInputText] = useState("");
+  const [items, setItems] = useState([]);
 
   function handleChange(event) {
-    const { value, name } = event.target;
+    const newValue = event.target.value;
+    setInputText(newValue);
+  }
 
-    setContact((prevValue) => {
-      return {
-        ...prevValue,
-        [name]: value
-      };
-    });
+  function addItem() {
+    if (inputText.trim() !== "") {
+      setItems((prevItems) => {
+        return [...prevItems, inputText];
+      });
+      setInputText("");
+    }
   }
 
   return (
-    <div className="container">
+    <div className="app-layout">
       <style>{`
         body {
           margin: 0;
           padding: 0;
-          font-family: sans-serif;
-          background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%) !important;
+          font-family: 'Inter', system-ui, sans-serif;
+          background: linear-gradient(135deg, #d2ebd9 0%, #aed6b9 100%);
           min-height: 100vh;
           display: flex;
           justify-content: center;
           align-items: center;
         }
+
+        .app-layout {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
         .container {
-          text-align: center;
+          background-color: #ffffff;
+          border-top: 10px solid #589669;
+          padding: 35px 30px;
+          border-radius: 16px;
+          box-shadow: 0 15px 35px rgba(40, 70, 50, 0.15);
           width: 100%;
-          max-width: 320px;
-        }
-        h1, p {
-          color: #ffffff;
-          font-weight: 300;
-          margin: 0;
-        }
-        h1 {
-          font-size: 3rem;
-        }
-        p {
-          font-size: 1.2rem;
-          margin-top: 5px;
-          margin-bottom: 25px;
-          color: rgba(255, 255, 255, 0.7);
-        }
-        form {
+          max-width: 380px;
+          min-height: 420px;
           display: flex;
           flex-direction: column;
         }
-        input {
-          background-color: rgba(255, 255, 255, 0.12);
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          border-radius: 6px;
-          color: #ffffff;
-          font-size: 1.1rem;
-          padding: 14px;
-          margin-bottom: 14px;
+
+        .heading h1 {
+          color: #2b4c34;
+          font-size: 2.2rem;
+          font-weight: 800;
+          margin: 0 0 5px 0;
+          letter-spacing: -0.5px;
           text-align: center;
+        }
+
+        .subtitle {
+          color: #7da887;
+          font-size: 0.95rem;
+          margin-bottom: 25px;
+          font-weight: 500;
+          text-align: center;
+        }
+
+        .form {
+          display: flex;
+          gap: 12px;
+          margin-bottom: 25px;
+        }
+
+        input {
+          flex: 1;
+          background-color: #f4f8f5;
+          border: 2px solid #e1e9e3;
+          border-radius: 8px;
+          color: #2b4c34;
+          font-size: 1.05rem;
+          padding: 12px 16px;
           outline: none;
         }
-        input::placeholder {
-          color: rgba(255, 255, 255, 0.5);
+
+        input:focus {
+          border-color: #589669;
         }
+
+        input::placeholder {
+          color: #a3bda9;
+        }
+
         button {
-          background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+          background-color: #589669;
           border: none;
-          border-radius: 6px;
+          border-radius: 8px;
           color: #ffffff;
           cursor: pointer;
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-weight: 600;
-          padding: 14px;
+          padding: 12px 24px;
+        }
+
+        button:hover {
+          background-color: #437350;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          flex-grow: 1;
+        }
+
+        li {
+          background-color: #f4f8f5;
+          border: 1px solid #e8f0ea;
+          padding: 14px 16px;
+          border-radius: 8px;
+          margin-bottom: 10px;
+          color: #2b4c34;
+          font-size: 1.05rem;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        li::before {
+          content: "🌸";
+          font-size: 1.1rem;
+          flex-shrink: 0;
+        }
+
+        /* Places the flowers inside the white card right at the very bottom */
+        .card-bottom-flowers {
+          font-size: 12px;
+          letter-spacing: 4px;
+          opacity: 0.85;
+          text-align: center;
+          margin-top: auto;
+          padding-top: 20px;
         }
       `}</style>
 
-      <h1>Hello {contact.fName} {contact.lName}</h1>
-      <p>{contact.email}</p>
-      
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input
-          name="fName"
-          onChange={handleChange}
-          placeholder="First Name"
-          value={contact.fName}
-        />
-        <input
-          name="lName"
-          onChange={handleChange}
-          placeholder="Last Name"
-          value={contact.lName}
-        />
-        <input
-          name="email"
-          onChange={handleChange}
-          placeholder="Email"
-          value={contact.email}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="container">
+        <div className="heading">
+          <h1>To-Do List</h1>
+          <div className="subtitle">Daily Tasks Overview</div>
+        </div>
+        
+        <div className="form">
+          <input 
+            onChange={handleChange} 
+            type="text" 
+            value={inputText} 
+            placeholder="What needs to be done?" 
+          />
+          <button onClick={addItem}>Add</button>
+        </div>
+        
+        <ul>
+          {items.map((todoItem, index) => (
+            <li key={index}>{todoItem}</li>
+          ))}
+        </ul>
+
+        {/* This div is now moved inside the white container box at the bottom */}
+        <div className="card-bottom-flowers">
+          🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸
+        </div>
+      </div>
     </div>
   );
 }
 
 export default App;
-
-
