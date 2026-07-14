@@ -1,25 +1,34 @@
+import Time "mo:base/Time";
+
 persistent actor {
 
-  var currentName : Text = "World";
-  var count : Nat = 0;
+  var principalAmount : Float = 1000.0;
+  var interestRate : Float = 0.05;
+  var lastUpdatedTime : Int = Time.now();
 
-  public query func greet(name : Text) : async Text {
-    return "Hello, " # name # "!";
-  };
-
-  public func setName(newName : Text) : async () {
-    if (newName != "") {
-      currentName := newName;
+  func floatPower(base : Float, exponent : Nat) : Float {
+    var result : Float = 1.0;
+    var counter : Nat = 0;
+    while (counter < exponent) {
+      result := result * base;
+      counter := counter + 1;
     };
+    return result;
   };
 
-  public query func getCount() : async Nat {
-    return count;
+  public query func getBalance() : async Float {
+    return principalAmount;
   };
 
-  public func incrementCount() : async () {
-    count := count + 1;
+  public query func getLastUpdated() : async Int {
+    return lastUpdatedTime;
   };
 
-}
+  public func calculateCompoundInterest(years : Nat) : async Float {
+    let compoundedValue = principalAmount * floatPower(1.0 + interestRate, years);
+    principalAmount := compoundedValue;
+    lastUpdatedTime := Time.now();
+    return principalAmount;
+  };
 
+};
