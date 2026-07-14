@@ -7,7 +7,9 @@ persistent actor {
   };
 
   public func setName(newName : Text) : async () {
-    currentName := newName;
+    if (newName != "") {
+      currentName := newName;
+    };
   };
 
 }
